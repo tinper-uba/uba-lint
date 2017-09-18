@@ -1,0 +1,33 @@
+{
+  "name": "uba-lint",
+  "version": "0.0.1",
+  "description": "uba lint",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iuap-design/uba-plugin.git"
+  },
+  "keywords": [
+    "uba",
+    "uba lint"
+  ],
+  "author": "yonyoufed",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iuap-design/uba-plugin/issues"
+  },
+  "homepage": "https://github.com/iuap-design/uba-plugin#readme",
+  "dependencies": {
+    "babel-eslint": "^8.0.0",
+    "chalk": "^1.1.3",
+    "eslint-plugin-react": "^7.3.0",
+    "eslint-plugin-vue": "^2.1.0",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^4.0.0",
+    "html-wiring": "^1.2.0",
+    "minimist": "^1.2.0"
+  }
+}
