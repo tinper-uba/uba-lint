@@ -1,16 +1,23 @@
-# uba plugin
+# uba lint
 
 ## 说明
 
+uba 代码检查插件
 
 
 ## 使用
 
 
 ```bash
-uba
+uba lint -t react src
 ```
+-t 可指定三个参数 js/react/vue
 
+后面跟的是检查目录，可写多个目录
+
+```bash
+uba lint -t react src demo
+```
 
 
 ## 更多
