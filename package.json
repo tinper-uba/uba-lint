@@ -8,18 +8,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iuap-design/uba-plugin.git"
+    "url": "git+https://github.com/uba-plugin/uba-lint.git"
   },
   "keywords": [
     "uba",
     "uba lint"
   ],
-  "author": "yonyoufed",
+  "author": "boyuzhou",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/iuap-design/uba-plugin/issues"
+    "url": "https://github.com/uba-plugin/uba-lint/issues"
   },
-  "homepage": "https://github.com/iuap-design/uba-plugin#readme",
+  "homepage": "https://github.com/uba-plugin/uba-lint#readme",
   "dependencies": {
     "babel-eslint": "^8.0.0",
     "chalk": "^1.1.3",

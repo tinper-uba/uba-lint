@@ -7,8 +7,6 @@ const glob = require('glob');
 const fs = require('fs');
 const requireUncached = require("require-uncached");
 
-const debug = require("debug")("uba-lint:config-file");
-
 const jsEslintCfg = require('../eslint/js.eslintrc');
 const reactEslintCfg = require('../eslint/react.eslintrc');
 const vueEslintCfg = require('../eslint/vue.eslintrc');
@@ -32,16 +30,16 @@ function readFile(filePath) {
 }
 
 function loadJSConfigFile(filePath) {
-    debug(`Loading JS config file: ${filePath}`);
+    console.log(chalk.blue(`读取js文件: ${filePath}`));
     try {
         return requireUncached(filePath);
     } catch (e) {
-        debug(`Error reading JavaScript file: ${filePath}`);
+        console.log(chalk.red(`读取js文件失败: ${filePath}`));
         e.message = `Cannot read config file: ${filePath}\nError: ${e.message}`;
         throw e;
-    }
 }
 
+}
 
 
 function lint(type, dir) {
@@ -62,39 +60,37 @@ function lint(type, dir) {
 
 
     dir.forEach(function (item) {
-        fs.exists(item, function (exists) {
-            console.log(item, exists);
-            if(exists){
+
+            console.log(fs.existsSync(item));
+            if(fs.existsSync(item)){
                 pathAry.push(
                     path.join(process.cwd(), './' + item + '/**/*.js')
                 )
             }else{
-                debug(`找不到这个目录: ${item}`);
+                console.log(chalk.red(`找不到这个目录: ${item}`));
+                process.exit(0);
             }
-
-        });
     });
 
-    fs.exists('.eslintrc.js', function (exists) {
-        if(exists){
-            let content = loadJSConfigFile(path.join(process.cwd(), '.eslintrc.js'));
 
-            if(content.hasOwnProperty('extends')){
-                if(Array.isArray(content.extends)){
-                    content.extends.push(path.resolve(__dirname, eslintPath));
-                }else if (typeof content.extends === 'string') {
-                    content.extends = [content.extends];
-                    content.extends.push(path.resolve(__dirname, eslintPath));
-                }
-            }else{
-                content.extends = [];
+    if (fs.existsSync('.eslintrc.js')) {
+        console.log(path.join(process.cwd(), '.eslintrc.js'));
+        let content = loadJSConfigFile(path.join(process.cwd(), '.eslintrc.js'));
+
+        if (content.hasOwnProperty('extends')) {
+            if (Array.isArray(content.extends)) {
+                content.extends.push(path.resolve(__dirname, eslintPath));
+            } else if (typeof content.extends === 'string') {
+                content.extends = [content.extends];
                 content.extends.push(path.resolve(__dirname, eslintPath));
             }
-            console.log(content);
-            eslintCfg = content;
+        } else {
+            content.extends = [];
+            content.extends.push(path.resolve(__dirname, eslintPath));
         }
-
-    });
+        console.log(content);
+        eslintCfg = content;
+    }
 
     gulp.src(pathAry)
         .pipe(eslint(eslintCfg))
