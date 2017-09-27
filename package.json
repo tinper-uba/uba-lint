@@ -1,6 +1,6 @@
 {
   "name": "uba-lint",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "uba lint",
   "main": "index.js",
   "scripts": {

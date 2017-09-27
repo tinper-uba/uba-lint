@@ -73,24 +73,24 @@ function lint(type, dir) {
     });
 
 
-    if (fs.existsSync('.eslintrc.js')) {
-        console.log(path.join(process.cwd(), '.eslintrc.js'));
-        let content = loadJSConfigFile(path.join(process.cwd(), '.eslintrc.js'));
-
-        if (content.hasOwnProperty('extends')) {
-            if (Array.isArray(content.extends)) {
-                content.extends.push(path.resolve(__dirname, eslintPath));
-            } else if (typeof content.extends === 'string') {
-                content.extends = [content.extends];
-                content.extends.push(path.resolve(__dirname, eslintPath));
-            }
-        } else {
-            content.extends = [];
-            content.extends.push(path.resolve(__dirname, eslintPath));
-        }
-        console.log(content);
-        eslintCfg = content;
-    }
+    // if (fs.existsSync('.eslintrc.js')) {
+    //     console.log(path.join(process.cwd(), '.eslintrc.js'));
+    //     let content = loadJSConfigFile(path.join(process.cwd(), '.eslintrc.js'));
+    //
+    //     if (content.hasOwnProperty('extends')) {
+    //         if (Array.isArray(content.extends)) {
+    //             content.extends.push(path.resolve(__dirname, eslintPath));
+    //         } else if (typeof content.extends === 'string') {
+    //             content.extends = [content.extends];
+    //             content.extends.push(path.resolve(__dirname, eslintPath));
+    //         }
+    //     } else {
+    //         content.extends = [];
+    //         content.extends.push(path.resolve(__dirname, eslintPath));
+    //     }
+    //     console.log(content);
+    //     eslintCfg = content;
+    // }
 
     gulp.src(pathAry)
         .pipe(eslint(eslintCfg))
