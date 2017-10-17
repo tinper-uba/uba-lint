@@ -19,6 +19,20 @@ uba lint -t react src
 uba lint -t react src demo
 ```
 
+#### 可以在package里面配置
+
+```
+"scripts": {
+    "dev": "uba server",
+    "build": "uba build",
+    "lint": "uba lint -t react src"
+  },
+```
+然后在控制台执行
+```
+npm run lint
+```
+
 
 ## 更多
 
